@@ -27,7 +27,8 @@ export default function HomePage() {
           <Image src="/fondobarber.jpg" alt="Barbería Studio La Banda" fill priority className="object-cover" />
         </div>
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(121,115,0,0.15) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.55) 100%)" }} />
 
         <div className="relative z-10 container mx-auto px-4 text-center pt-28 pb-16">
           {/* Logo */}

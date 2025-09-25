@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 8%;
+  --background: 57 10% 10%;
   --foreground: 0 0% 95%;
   --card: 0 0% 12%;
   --card-foreground: 0 0% 95%;
@@ -31,7 +31,7 @@
 }
 
 .dark {
-  --background: 0 0% 5%;
+  --background: 57 10% 7%;
   --foreground: 0 0% 98%;
   --card: 0 0% 8%;
   --card-foreground: 0 0% 98%;
@@ -63,7 +63,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans bg-[radial-gradient(ellipse_at_top,rgba(121,115,0,0.10),transparent_60%),radial-gradient(ellipse_at_bottom,rgba(121,115,0,0.06),transparent_60%)];
   }
 }
 

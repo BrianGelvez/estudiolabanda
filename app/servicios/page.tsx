@@ -1,58 +1,54 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Scissors, Star, Award, Clock, Sparkles, Crown } from "lucide-react"
+import { Scissors, Star, Crown } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
 const services = [
   {
+    tier: "base" as const,
     icon: Scissors,
-    title: "Corte Clásico",
-    description: "Cortes tradicionales con técnicas modernas. Incluye lavado, corte personalizado y peinado.",
-    price: "25€",
-    duration: "45 min",
-    features: ["Consulta personalizada", "Lavado premium", "Corte a medida", "Peinado final"],
-  },
-  {
-    icon: Star,
-    title: "Corte + Barba",
-    description: "Servicio completo de corte y arreglo de barba con productos premium.",
-    price: "35€",
-    duration: "60 min",
-    features: ["Corte personalizado", "Arreglo de barba", "Aceites premium", "Masaje facial"],
-  },
-  {
-    icon: Award,
-    title: "Afeitado Tradicional",
-    description: "Afeitado clásico con navaja y toallas calientes, una experiencia única.",
-    price: "20€",
+    title: "Corte Base",
+    description:
+      "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Servicio práctico, rápido y prolijo.",
+    price: "$7.000",
     duration: "30 min",
-    features: ["Toallas calientes", "Navaja tradicional", "Bálsamo aftershave", "Masaje relajante"],
+    features: [
+      "Fade prolijo en laterales",
+      "Tijera en parte superior",
+      "Terminado limpio y definido",
+    ],
   },
   {
+    tier: "pro" as const,
+    icon: Star,
+    title: "Corte Pro",
+    description:
+      "Incluye todo lo del Corte Base + arreglo de barba, perfilado de cejas y opción de diseño en el cabello.",
+    price: "$8.000",
+    duration: "45 min",
+    features: [
+      "Todo lo del Corte Base",
+      "Arreglo de barba",
+      "Perfilado de cejas",
+      "Opción de diseño",
+    ],
+  },
+  {
+    tier: "premium" as const,
     icon: Crown,
-    title: "Servicio Premium",
-    description: "La experiencia completa: corte, barba, afeitado y tratamientos especiales.",
-    price: "50€",
-    duration: "90 min",
-    features: ["Todo incluido", "Tratamiento capilar", "Mascarilla facial", "Bebida premium"],
-  },
-  {
-    icon: Sparkles,
-    title: "Diseño Especial",
-    description: "Diseños únicos y modernos para ocasiones especiales.",
-    price: "30€",
-    duration: "60 min",
-    features: ["Diseño personalizado", "Técnicas avanzadas", "Productos de fijación", "Fotos del resultado"],
-  },
-  {
-    icon: Clock,
-    title: "Mantenimiento",
-    description: "Servicio rápido para mantener tu look entre cortes principales.",
-    price: "15€",
-    duration: "20 min",
-    features: ["Retoque rápido", "Arreglo de contornos", "Peinado", "Productos de acabado"],
+    title: "Corte Premium Experiencia",
+    description:
+      "Incluye todo lo anterior + asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello y se ofrece una experiencia de cuidado exclusiva.",
+    price: "$9.000",
+    duration: "1 hora",
+    features: [
+      "Todo lo del Corte Pro",
+      "Asesoramiento personalizado",
+      "Trabajo de textura del cabello",
+      "Experiencia de cuidado exclusiva",
+    ],
   },
 ]
 
@@ -75,34 +71,54 @@ export default function ServiciosPage() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-16">
             {services.map((service, index) => (
-              <Card key={index} className="glass-card rounded-2xl p-8 hover:scale-105 transition-all duration-300">
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6">
-                  <service.icon className="w-8 h-8 text-primary" />
+              <Card
+                key={index}
+                className={`glass-card rounded-2xl p-6 sm:p-8 hover:scale-105 transition-all duration-300 ${
+                  service.tier === "pro" ? "border-primary/40" : ""
+                } ${service.tier === "premium" ? "ring-2 ring-primary/60" : ""}`}
+              >
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                  <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                 </div>
 
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-primary">{service.price}</div>
-                    <div className="text-sm text-muted-foreground">{service.duration}</div>
+                <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                    {service.title}
+                    <span
+                      className={`text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full border ${
+                        service.tier === "base"
+                          ? "bg-primary/10 border-primary/20 text-primary"
+                          : service.tier === "pro"
+                          ? "bg-primary/15 border-primary/30 text-primary"
+                          : "bg-primary/20 border-primary/40 text-primary"
+                      }`}
+                    >
+                      {service.tier === "base" ? "BASE" : service.tier === "pro" ? "PRO" : "PREMIUM"}
+                    </span>
+                  </h3>
+                  <div className="text-left sm:text-right">
+                    <div className="text-xl sm:text-2xl font-bold text-primary">{service.price}</div>
+                    <div className="text-xs sm:text-sm text-muted-foreground">{service.duration}</div>
                   </div>
                 </div>
 
-                <p className="text-muted-foreground mb-6 text-pretty">{service.description}</p>
+                <p className="text-muted-foreground mb-5 sm:mb-6 text-pretty text-sm sm:text-base">{service.description}</p>
 
-                <div className="space-y-2 mb-6">
+                <div className="space-y-1.5 sm:space-y-2 mb-5 sm:mb-6">
                   {service.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                      <span className="text-sm text-muted-foreground">{feature}</span>
+                      <span className="text-sm text-muted-foreground leading-snug">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <Link href="/reservar" className="block">
-                  <Button className="glass-button rounded-full w-full py-3 font-semibold">Reservar Ahora</Button>
+                  <Button className="glass-button rounded-full w-full py-3 sm:py-3.5 text-base font-semibold">
+                    Reservar Ahora
+                  </Button>
                 </Link>
               </Card>
             ))}
