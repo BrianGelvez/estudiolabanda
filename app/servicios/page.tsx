@@ -11,12 +11,13 @@ const services = [
     icon: Scissors,
     title: "Corte Base",
     description:
-      "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Servicio práctico, rápido y prolijo.",
+      "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Incluye perfilado de cejas. Servicio práctico, rápido y prolijo.",
     price: "$7.000",
     duration: "30 min",
     features: [
       "Fade prolijo en laterales",
       "Tijera en parte superior",
+      "Perfilado de cejas",
       "Terminado limpio y definido",
     ],
   },
@@ -25,13 +26,14 @@ const services = [
     icon: Star,
     title: "Corte Pro",
     description:
-      "Incluye todo lo del Corte Base + arreglo de barba, perfilado de cejas y opción de diseño en el cabello.",
+      "Incluye todo lo del Corte Base + arreglo de barba, perfilado de cejas, mascarilla para puntos negros y opción de diseño en el cabello.",
     price: "$8.000",
     duration: "45 min",
     features: [
       "Todo lo del Corte Base",
       "Arreglo de barba",
       "Perfilado de cejas",
+      "Mascarilla para puntos negros",
       "Opción de diseño",
     ],
   },
@@ -40,13 +42,15 @@ const services = [
     icon: Crown,
     title: "Corte Premium Experiencia",
     description:
-      "Incluye todo lo anterior + asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello y se ofrece una experiencia de cuidado exclusiva.",
+      "Incluye todo lo anterior + asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello, productos y secado de cabello, con peinado final (styling).",
     price: "$9.000",
     duration: "1 hora",
     features: [
       "Todo lo del Corte Pro",
       "Asesoramiento personalizado",
       "Trabajo de textura del cabello",
+      "Productos y secado de cabello",
+      "Peinado final (styling)",
       "Experiencia de cuidado exclusiva",
     ],
   },
@@ -75,7 +79,7 @@ export default function ServiciosPage() {
             {services.map((service, index) => (
               <Card
                 key={index}
-                className={`glass-card rounded-2xl p-6 sm:p-8 hover:scale-105 transition-all duration-300 ${
+                className={`glass-card card-bright rounded-2xl p-6 sm:p-8 hover:scale-105 transition-all duration-300 ${
                   service.tier === "pro" ? "border-primary/40" : ""
                 } ${service.tier === "premium" ? "ring-2 ring-primary/60" : ""}`}
               >
