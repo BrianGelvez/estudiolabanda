@@ -22,21 +22,14 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 hero-gradient"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-primary rounded-full blur-3xl animate-float"></div>
-          <div
-            className="absolute bottom-20 right-10 w-40 h-40 bg-primary rounded-full blur-3xl animate-float"
-            style={{ animationDelay: "2s" }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/2 w-24 h-24 bg-primary rounded-full blur-3xl animate-float"
-            style={{ animationDelay: "4s" }}
-          ></div>
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image src="/fondobarber.jpg" alt="Barbería Studio La Banda" fill priority className="object-cover" />
         </div>
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="relative z-10 container mx-auto px-4 text-center pt-20">
+        <div className="relative z-10 container mx-auto px-4 text-center pt-28 pb-16">
           {/* Logo */}
           <div className="flex justify-center mb-8">
             <div className="glass-card rounded-2xl p-8 animate-float">
@@ -45,11 +38,11 @@ export default function HomePage() {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance text-shadow-lg tracking-tight">
             STUDIO <span className="text-primary">LA BANDA</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty">
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto text-pretty text-shadow-lg">
             Donde el estilo se encuentra con la tradición. Experimenta el arte de la barbería en su máxima expresión.
           </p>
 

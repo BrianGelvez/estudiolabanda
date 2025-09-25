@@ -68,6 +68,10 @@
 }
 
 @layer utilities {
+  .text-shadow-lg {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  }
+
   .glass {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
