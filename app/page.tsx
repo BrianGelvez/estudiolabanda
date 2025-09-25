@@ -44,7 +44,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto text-pretty text-shadow-lg">
-            Donde el estilo se encuentra con la tradición. Experimenta el arte de la barbería en su máxima expresión.
+            Espacio donde no se trata de solo un corte, si no de una experiencia que te escucha, te representa y te conecta con tu mejor version.
           </p>
 
           {/* CTA Buttons */}
