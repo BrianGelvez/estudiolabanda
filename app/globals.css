@@ -9,22 +9,22 @@
   --card-foreground: 0 0% 95%;
   --popover: 0 0% 12%;
   --popover-foreground: 0 0% 95%;
-  --primary: 45 100% 50%;
-  --primary-foreground: 0 0% 8%;
+  --primary: 57 100% 24%;
+  --primary-foreground: 0 0% 95%;
   --secondary: 0 0% 18%;
   --secondary-foreground: 0 0% 95%;
   --muted: 0 0% 18%;
   --muted-foreground: 0 0% 65%;
-  --accent: 45 85% 55%;
-  --accent-foreground: 0 0% 8%;
+  --accent: 57 100% 30%;
+  --accent-foreground: 0 0% 95%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   --border: 0 0% 25%;
   --input: 0 0% 25%;
-  --ring: 45 100% 50%;
-  --chart-1: 45 100% 50%;
-  --chart-2: 45 85% 55%;
-  --chart-3: 45 70% 60%;
+  --ring: 57 100% 24%;
+  --chart-1: 57 100% 24%;
+  --chart-2: 57 100% 30%;
+  --chart-3: 57 100% 35%;
   --chart-4: 0 0% 70%;
   --chart-5: 0 0% 50%;
   --radius: 0.5rem;
@@ -37,22 +37,22 @@
   --card-foreground: 0 0% 98%;
   --popover: 0 0% 8%;
   --popover-foreground: 0 0% 98%;
-  --primary: 45 100% 50%;
-  --primary-foreground: 0 0% 8%;
+  --primary: 57 100% 24%;
+  --primary-foreground: 0 0% 98%;
   --secondary: 0 0% 15%;
   --secondary-foreground: 0 0% 98%;
   --muted: 0 0% 15%;
   --muted-foreground: 0 0% 63.9%;
-  --accent: 45 85% 55%;
-  --accent-foreground: 0 0% 8%;
+  --accent: 57 100% 30%;
+  --accent-foreground: 0 0% 98%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
   --border: 0 0% 20%;
   --input: 0 0% 20%;
-  --ring: 45 100% 50%;
-  --chart-1: 45 100% 50%;
-  --chart-2: 45 85% 55%;
-  --chart-3: 45 70% 60%;
+  --ring: 57 100% 24%;
+  --chart-1: 57 100% 24%;
+  --chart-2: 57 100% 30%;
+  --chart-3: 57 100% 35%;
   --chart-4: 0 0% 70%;
   --chart-5: 0 0% 50%;
 }
@@ -71,29 +71,29 @@
   .glass {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(121, 115, 0, 0.2);
   }
 
   .glass-card {
     background: rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(121, 115, 0, 0.15);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   .glass-button {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 1));
+    background: linear-gradient(135deg, rgba(121, 115, 0, 0.9), rgba(121, 115, 0, 1));
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    color: #000000;
+    border: 1px solid rgba(121, 115, 0, 0.3);
+    color: #ffffff;
     font-weight: 600;
     transition: all 0.3s ease;
   }
 
   .glass-button:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 1), rgba(255, 215, 0, 0.8));
+    background: linear-gradient(135deg, rgba(121, 115, 0, 1), rgba(121, 115, 0, 0.8));
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 25px rgba(121, 115, 0, 0.3);
   }
 
   .animate-float {
@@ -111,18 +111,18 @@
   }
 
   .hero-gradient {
-    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(121, 115, 0, 0.1) 0%, transparent 70%);
   }
 
   .mustard-gold {
-    color: #FFD700;
+    color: #797300;
   }
 
   .mustard-gold-bg {
-    background-color: #FFD700;
+    background-color: #797300;
   }
 
   .mustard-gold-border {
-    border-color: #FFD700;
+    border-color: #797300;
   }
 }

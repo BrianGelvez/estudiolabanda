@@ -1,33 +1,12 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, Scissors, Star, Users, Clock, Award } from "lucide-react"
+import { Scissors, Users, Clock, Award } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
-const services = [
-  {
-    icon: Scissors,
-    title: "Corte Clásico",
-    description: "Cortes tradicionales con técnicas modernas",
-    price: "25€",
-  },
-  {
-    icon: Star,
-    title: "Corte + Barba",
-    description: "Servicio completo de corte y arreglo de barba",
-    price: "35€",
-  },
-  {
-    icon: Award,
-    title: "Afeitado Tradicional",
-    description: "Afeitado clásico con navaja y toallas calientes",
-    price: "20€",
-  },
-]
 
 const stats = [
   { number: "15+", label: "Años de Experiencia" },
@@ -75,18 +54,9 @@ export default function HomePage() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link href="/reservar">
-              <Button className="glass-button rounded-full px-8 py-4 text-lg font-semibold flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                Reservar Cita
-              </Button>
-            </Link>
+          <div className="flex justify-center mb-16">
             <Link href="/servicios">
-              <Button
-                variant="outline"
-                className="glass rounded-full px-8 py-4 text-lg font-semibold border-primary/30 hover:bg-primary/10 bg-transparent"
-              >
+              <Button className="glass-button rounded-full px-8 py-4 text-lg font-semibold">
                 Ver Servicios
               </Button>
             </Link>
@@ -104,36 +74,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Preview */}
+      {/* About Us Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Nuestros Servicios</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Sobre Nosotros</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Servicios premium diseñados para el hombre moderno que valora la calidad y el estilo.
+              Conoce la historia y la pasión que hay detrás de Studio La Banda.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <service.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-muted-foreground mb-6">{service.description}</p>
-                <div className="text-2xl font-bold text-primary">{service.price}</div>
-              </Card>
-            ))}
+          <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <div className="space-y-6">
+              <div className="glass-card rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Nuestra Historia</h3>
+                <p className="text-muted-foreground mb-4">
+                  Studio La Banda nació de la pasión por el arte de la barbería tradicional. 
+                  Fundado en 2009, nuestro estudio ha sido el hogar de barberos expertos que 
+                  han perfeccionado sus técnicas a lo largo de décadas.
+                </p>
+                <p className="text-muted-foreground">
+                  Cada corte, cada afeitado, cada detalle es una obra de arte que refleja 
+                  nuestro compromiso con la excelencia y la tradición barberil.
+                </p>
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="glass-card rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Nuestra Filosofía</h3>
+                <p className="text-muted-foreground mb-4">
+                  Creemos que la barbería es más que un simple corte de pelo. Es un ritual, 
+                  una experiencia que combina tradición, técnica y modernidad para crear 
+                  un momento único para cada cliente.
+                </p>
+                <p className="text-muted-foreground">
+                  En Studio La Banda, cada visita es una oportunidad para conectarte con 
+                  tu mejor versión, rodeado de un ambiente exclusivo y profesional.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/servicios">
+            <Link href="/nosotros">
               <Button className="glass-button rounded-full px-8 py-3 text-lg font-semibold">
-                Ver Todos los Servicios
+                Conoce Más Sobre Nosotros
               </Button>
             </Link>
           </div>
