@@ -1,9 +1,12 @@
+"use client"
+
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Scissors, Star, Crown } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { motion } from "framer-motion"
 
 const services = [
   {
@@ -56,6 +59,26 @@ const services = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+}
+
 export default function ServiciosPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -64,7 +87,12 @@ export default function ServiciosPage() {
       <div className="pt-24 pb-12">
         <div className="container mx-auto px-4">
           {/* Page Header */}
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Nuestros <span className="text-primary">Servicios</span>
             </h1>
@@ -72,17 +100,27 @@ export default function ServiciosPage() {
               Servicios premium diseñados para el hombre moderno que valora la calidad, el estilo y la atención al
               detalle.
             </p>
-          </div>
+          </motion.div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-16">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-16"
+          >
             {services.map((service, index) => (
-              <Card
+              <motion.div
                 key={index}
-                className={`glass-card card-bright rounded-2xl p-6 sm:p-8 hover:scale-105 transition-all duration-300 ${
-                  service.tier === "pro" ? "border-primary/40" : ""
-                } ${service.tier === "premium" ? "ring-2 ring-primary/60" : ""}`}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <Card
+                  className={`glass-card card-bright rounded-2xl p-6 sm:p-8 h-full transition-all duration-300 ${
+                    service.tier === "pro" ? "border-primary/40" : ""
+                  } ${service.tier === "premium" ? "ring-2 ring-primary/60" : ""}`}
+                >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 sm:mb-6">
                   <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                 </div>
@@ -120,17 +158,32 @@ export default function ServiciosPage() {
                 </div>
 
                 <Link href="/reservar" className="block">
-                  <Button className="glass-button rounded-full w-full py-3 sm:py-3.5 text-base font-semibold">
-                    Reservar Ahora
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button className="glass-button rounded-full w-full py-3 sm:py-3.5 text-base font-semibold">
+                      Reservar Ahora
+                    </Button>
+                  </motion.div>
                 </Link>
               </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Additional Info */}
-          <div className="max-w-4xl mx-auto">
-            <Card className="glass-card rounded-2xl p-8 text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="glass-card rounded-2xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">¿No encuentras lo que buscas?</h2>
               <p className="text-muted-foreground mb-6 text-lg">
                 Ofrecemos servicios personalizados adaptados a tus necesidades específicas. Contacta con nosotros para
@@ -138,19 +191,30 @@ export default function ServiciosPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contacto">
-                  <Button className="glass-button rounded-full px-8 py-3 font-semibold">Contactar</Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button className="glass-button rounded-full px-8 py-3 font-semibold">Contactar</Button>
+                  </motion.div>
                 </Link>
                 <Link href="/reservar">
-                  <Button
-                    variant="outline"
-                    className="glass rounded-full px-8 py-3 font-semibold border-primary/30 hover:bg-primary/10 bg-transparent"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Reservar Cita
-                  </Button>
+                    <Button
+                      variant="outline"
+                      className="glass rounded-full px-8 py-3 font-semibold border-primary/30 hover:bg-primary/10 bg-transparent"
+                    >
+                      Reservar Cita
+                    </Button>
+                  </motion.div>
                 </Link>
               </div>
             </Card>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 

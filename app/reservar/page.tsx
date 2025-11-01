@@ -10,6 +10,7 @@ import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import AvailabilityCalendar from "@/components/availability-calendar"
+import { motion, AnimatePresence } from "framer-motion"
 
 const barbers = [
   {
@@ -56,8 +57,44 @@ const timeSlots = [
   "18:30",
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.4, ease: "easeOut" }
+  }
+}
+
+const stepVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 50 : -50,
+    opacity: 0
+  }),
+  center: {
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 50 : -50,
+    opacity: 0
+  })
+}
+
 export default function ReservarPage() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [direction, setDirection] = useState(1)
   const [selectedBarber, setSelectedBarber] = useState<number | null>(null)
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedTime, setSelectedTime] = useState("")
@@ -69,18 +106,21 @@ export default function ReservarPage() {
 
   const handleNext = () => {
     if (currentStep < 4) {
+      setDirection(1)
       setCurrentStep(currentStep + 1)
     }
   }
 
   const handleBack = () => {
     if (currentStep > 1) {
+      setDirection(-1)
       setCurrentStep(currentStep - 1)
     }
   }
 
   const handleSubmit = () => {
     console.log(formData)
+    setDirection(1)
     setCurrentStep(4)
   }
 
@@ -96,28 +136,68 @@ export default function ReservarPage() {
       <div className="pt-24 pb-12">
         <div className="container mx-auto px-4">
           {/* Page Header */}
-          <div className="text-center mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Reservar <span className="text-primary">Cita</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Sigue estos sencillos pasos para reservar tu cita en Studio La Banda
             </p>
-          </div>
+          </motion.div>
 
           {/* Progress indicator - Mejorado para móvil */}
-          <div className="flex justify-center mb-8 md:mb-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-8 md:mb-12"
+          >
             <div className="glass-card rounded-full px-2 py-3 md:px-8 md:py-4 w-full max-w-sm mx-4">
               <div className="flex items-center justify-between">
                 {[1, 2, 3, 4].map((step) => (
-                  <div key={step} className="flex flex-col items-center">
-                    <div
-                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-medium transition-all duration-300 ${
-                        currentStep >= step ? "bg-primary text-black" : "bg-secondary text-muted-foreground"
+                  <motion.div 
+                    key={step} 
+                    className="flex flex-col items-center"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <motion.div
+                      animate={{
+                        scale: currentStep === step ? [1, 1.1, 1] : 1,
+                        backgroundColor: currentStep >= step ? "hsl(var(--primary))" : "hsl(var(--secondary))"
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-xs md:text-sm font-medium ${
+                        currentStep >= step ? "text-black" : "text-muted-foreground"
                       }`}
                     >
-                      {currentStep > step ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : step}
-                    </div>
+                      <AnimatePresence mode="wait">
+                        {currentStep > step ? (
+                          <motion.div
+                            key="check"
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            exit={{ scale: 0, rotate: 180 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Check className="w-4 h-4 md:w-5 md:h-5" />
+                          </motion.div>
+                        ) : (
+                          <motion.span
+                            key="number"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0 }}
+                          >
+                            {step}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
                     {/* Labels para móvil */}
                     <span className="text-xs text-muted-foreground mt-1 hidden sm:block">
                       {step === 1 && "Barbero"}
@@ -125,40 +205,65 @@ export default function ReservarPage() {
                       {step === 3 && "Hora"}
                       {step === 4 && "Confirmar"}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               
               {/* Barra de progreso continua para móvil */}
               <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-secondary/30 -translate-y-1/2 -z-10 mx-8">
-                <div 
-                  className="h-full bg-primary transition-all duration-500"
-                  style={{ width: `${((currentStep - 1) / 3) * 100}%` }}
+                <motion.div 
+                  className="h-full bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((currentStep - 1) / 3) * 100}%` }}
+                  transition={{ duration: 0.5 }}
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Step Content */}
           <div className="max-w-4xl mx-auto px-2 md:px-0">
-            {/* Step 1: Barber Selection */}
-            {currentStep === 1 && (
-              <div>
+            <AnimatePresence mode="wait" custom={direction}>
+              {/* Step 1: Barber Selection */}
+              {currentStep === 1 && (
+                <motion.div
+                  key="step1"
+                  custom={direction}
+                  variants={stepVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.3 }}
+                >
                 <Card className="glass-card rounded-2xl p-4 md:p-8 mb-6 md:mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 flex items-center justify-center gap-3">
+                  <motion.h2 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 flex items-center justify-center gap-3"
+                  >
                     <User className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                     <span className="hidden sm:inline">Selecciona tu Barbero</span>
                     <span className="sm:hidden">Barbero</span>
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  </motion.h2>
+                  <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+                  >
                     {barbers.map((barber) => (
-                      <Card
+                      <motion.div
                         key={barber.id}
-                        className={`glass-card rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                          selectedBarber === barber.id ? "ring-2 ring-primary bg-primary/10" : "hover:bg-white/5"
-                        }`}
-                        onClick={() => setSelectedBarber(barber.id)}
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.05, y: -5 }}
+                        whileTap={{ scale: 0.98 }}
                       >
+                        <Card
+                          className={`glass-card rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 ${
+                            selectedBarber === barber.id ? "ring-2 ring-primary bg-primary/10" : "hover:bg-white/5"
+                          }`}
+                          onClick={() => setSelectedBarber(barber.id)}
+                        >
                         <div className="text-center">
                           <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full overflow-hidden">
                             <Image
@@ -173,25 +278,44 @@ export default function ReservarPage() {
                           <p className="text-primary text-xs md:text-sm mb-1">{barber.specialty}</p>
                           <p className="text-muted-foreground text-xs md:text-sm">{barber.experience}</p>
                         </div>
-                      </Card>
+                        </Card>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </Card>
-                <div className="text-center">
-                  <Button
-                    onClick={handleNext}
-                    disabled={!selectedBarber}
-                    className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full max-w-xs"
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-center"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Continuar
-                  </Button>
-                </div>
-              </div>
+                    <Button
+                      onClick={handleNext}
+                      disabled={!selectedBarber}
+                      className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full max-w-xs"
+                    >
+                      Continuar
+                    </Button>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             )}
 
             {/* Step 2: Date Selection con Calendario Personalizado */}
             {currentStep === 2 && (
-              <div>
+              <motion.div
+                key="step2"
+                custom={direction}
+                variants={stepVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+              >
                 <Card className="glass-card rounded-2xl p-4 md:p-8 mb-6 md:mb-8">
                   <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 flex items-center justify-center gap-3">
                     <Calendar className="w-6 h-6 md:w-8 md:h-8 text-primary" />
@@ -206,29 +330,48 @@ export default function ReservarPage() {
                     className="mx-auto"
                   />
                 </Card>
+
                 
                 <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-                  <Button
-                    onClick={handleBack}
-                    variant="outline"
-                    className="glass rounded-full px-6 py-2 md:py-3 bg-transparent border-primary/30 w-full sm:w-auto"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Atrás
-                  </Button>
-                  <Button
-                    onClick={handleNext}
-                    disabled={!selectedDate}
-                    className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full sm:w-auto"
+                    <Button
+                      onClick={handleBack}
+                      variant="outline"
+                      className="glass rounded-full px-6 py-2 md:py-3 bg-transparent border-primary/30 w-full sm:w-auto"
+                    >
+                      Atrás
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Continuar
-                  </Button>
+                    <Button
+                      onClick={handleNext}
+                      disabled={!selectedDate}
+                      className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full sm:w-auto"
+                    >
+                      Continuar
+                    </Button>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Step 3: Time Selection & Form */}
             {currentStep === 3 && (
-              <div>
+              <motion.div
+                key="step3"
+                custom={direction}
+                variants={stepVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+              >
                 <Card className="glass-card rounded-2xl p-4 md:p-8 mb-6 md:mb-8">
                   <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 flex items-center justify-center gap-3">
                     <Clock className="w-6 h-6 md:w-8 md:h-8 text-primary" />
@@ -239,22 +382,33 @@ export default function ReservarPage() {
                   {/* Time Selection */}
                   <div className="mb-6 md:mb-8">
                     <Label className="text-base md:text-lg mb-3 md:mb-4 block text-white">Selecciona la hora</Label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3">
+                    <motion.div 
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3"
+                    >
                       {timeSlots.map((time) => (
-                        <Button
+                        <motion.div
                           key={time}
-                          variant={selectedTime === time ? "default" : "outline"}
-                          className={`glass-button rounded-lg p-2 md:p-3 text-sm md:text-base ${
-                            selectedTime === time
-                              ? "bg-primary text-black"
-                              : "glass border-primary/30 hover:bg-primary/20"
-                          }`}
-                          onClick={() => setSelectedTime(time)}
+                          variants={itemVariants}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          {time}
-                        </Button>
+                          <Button
+                            variant={selectedTime === time ? "default" : "outline"}
+                            className={`glass-button rounded-lg p-2 md:p-3 text-sm md:text-base w-full ${
+                              selectedTime === time
+                                ? "bg-primary text-black"
+                                : "glass border-primary/30 hover:bg-primary/20"
+                            }`}
+                            onClick={() => setSelectedTime(time)}
+                          >
+                            {time}
+                          </Button>
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Contact Form */}
@@ -299,35 +453,78 @@ export default function ReservarPage() {
                 </Card>
 
                 <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-                  <Button
-                    onClick={handleBack}
-                    variant="outline"
-                    className="glass rounded-full px-6 py-2 md:py-3 bg-transparent border-primary/30 w-full sm:w-auto"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Atrás
-                  </Button>
-                  <Button
-                    onClick={handleSubmit}
-                    disabled={!selectedTime || !formData.name || !formData.phone}
-                    className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full sm:w-auto"
+                    <Button
+                      onClick={handleBack}
+                      variant="outline"
+                      className="glass rounded-full px-6 py-2 md:py-3 bg-transparent border-primary/30 w-full sm:w-auto"
+                    >
+                      Atrás
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Confirmar Cita
-                  </Button>
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={!selectedTime || !formData.name || !formData.phone}
+                      className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full sm:w-auto"
+                    >
+                      Confirmar Cita
+                    </Button>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Step 4: Confirmation */}
             {currentStep === 4 && (
-              <div className="text-center">
+              <motion.div
+                key="step4"
+                custom={direction}
+                variants={stepVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+                className="text-center"
+              >
                 <Card className="glass-card rounded-2xl p-4 md:p-8">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
+                  >
                     <Check className="w-8 h-8 md:w-10 md:h-10 text-black" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">¡Cita Confirmada!</h2>
-                  <p className="text-muted-foreground mb-6 md:mb-8 text-base md:text-lg">Tu cita ha sido reservada exitosamente</p>
+                  </motion.div>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white"
+                  >
+                    ¡Cita Confirmada!
+                  </motion.h2>
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-muted-foreground mb-6 md:mb-8 text-base md:text-lg"
+                  >
+                    Tu cita ha sido reservada exitosamente
+                  </motion.p>
 
-                  <div className="glass rounded-xl p-4 md:p-6 mb-6 md:mb-8 text-left max-w-2xl mx-auto">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="glass rounded-xl p-4 md:p-6 mb-6 md:mb-8 text-left max-w-2xl mx-auto"
+                  >
                     <h3 className="font-bold text-lg md:text-xl mb-3 md:mb-4 text-primary">Detalles de tu cita:</h3>
                     <div className="space-y-2 md:space-y-3 text-white text-sm md:text-base">
                       <p>
@@ -357,9 +554,14 @@ export default function ReservarPage() {
                         </p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="glass rounded-xl p-4 md:p-6 mb-6 md:mb-8">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="glass rounded-xl p-4 md:p-6 mb-6 md:mb-8"
+                  >
                     <h4 className="font-bold text-base md:text-lg mb-2 text-primary">Información importante:</h4>
                     <ul className="text-xs md:text-sm text-muted-foreground space-y-1 text-left">
                       <li>• Llega 5 minutos antes de tu cita</li>
@@ -367,23 +569,33 @@ export default function ReservarPage() {
                       <li>• Ubicación: Calle Principal 123, Madrid</li>
                       <li>• Teléfono: +34 900 000 000</li>
                     </ul>
-                  </div>
+                  </motion.div>
 
-                  <Button
-                    onClick={() => {
-                      setCurrentStep(1)
-                      setSelectedBarber(null)
-                      setSelectedDate("")
-                      setSelectedTime("")
-                      setFormData({ name: "", phone: "", instagram: "" })
-                    }}
-                    className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full max-w-xs"
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Nueva Cita
-                  </Button>
+                    <Button
+                      onClick={() => {
+                        setDirection(-1)
+                        setCurrentStep(1)
+                        setSelectedBarber(null)
+                        setSelectedDate("")
+                        setSelectedTime("")
+                        setFormData({ name: "", phone: "", instagram: "" })
+                      }}
+                      className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full max-w-xs"
+                    >
+                      Nueva Cita
+                    </Button>
+                  </motion.div>
                 </Card>
-              </div>
+              </motion.div>
             )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
