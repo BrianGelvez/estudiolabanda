@@ -92,21 +92,34 @@ export default function HomePage() {
           </motion.p>
 
           {/* CTA Buttons */}
-          {/* <motion.div 
+          <motion.div 
             variants={itemVariants}
-            className="flex justify-center mb-16"
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
           >
-            <Link href="/servicios">
+            <Link href="/reservar">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Button className="glass-button rounded-full px-8 py-4 text-lg font-semibold">
+                  Reservar Turno
+                </Button>
+              </motion.div>
+            </Link>
+            <Link href="/servicios">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  variant="outline"
+                  className="glass rounded-full px-8 py-4 text-lg font-semibold border-primary/30 hover:bg-primary/10 bg-transparent"
+                >
                   Ver Servicios
                 </Button>
               </motion.div>
             </Link>
-          </motion.div> */}
+          </motion.div>
 
           {/* Stats */}
           <motion.div 
@@ -307,6 +320,23 @@ export default function HomePage() {
               </div>
             </motion.div>
           </div>
+
+          {/* CTA Reservar */}
+          <motion.div 
+            variants={itemVariants}
+            className="text-center mt-16"
+          >
+            <Link href="/reservar">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="glass-button rounded-full px-10 py-4 text-xl font-semibold">
+                  Reservá tu Turno Ahora
+                </Button>
+              </motion.div>
+            </Link>
+          </motion.div>
         </div>
       </motion.section>
 

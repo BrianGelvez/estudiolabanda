@@ -17,17 +17,17 @@ const barbers = [
   {
     id: 1,
     name: 'Matías Osses',
-    specialty: "Cortes modernos y clásicos",
+    specialty: "Barbero profesional",
     experience: "Cofundador",
-    image: "/young-modern-barber.jpg",
+    image: "/matias.png",
     phone: "3521530927",
   },
   {
     id: 2,
     name: 'Alexis Osses',
-    specialty: "Técnicas avanzadas",
+    specialty: "Barbero profesional",
     experience: "Cofundador",
-    image: "/professional-barber-with-beard.jpg",
+    image: "/alexis.png",
     phone: "3521532839",
   },
 ]
@@ -326,24 +326,24 @@ Quiero reservar una cita con los siguientes detalles:
                         whileTap={{ scale: 0.98 }}
                       >
                         <Card
-                          className={`glass-card rounded-xl p-4 md:p-6 cursor-pointer transition-all duration-300 ${
+                          className={`glass-card rounded-2xl p-4 md:p-6 cursor-pointer transition-all duration-300 ${
                             selectedBarber === barber.id ? "ring-2 ring-primary bg-primary/10" : "hover:bg-white/5"
                           }`}
                           onClick={() => setSelectedBarber(barber.id)}
                         >
                         <div className="text-center">
-                          <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-3 md:mb-4 rounded-full overflow-hidden">
+                          <div className="w-full aspect-[4/5] mx-auto mb-4 md:mb-5 rounded-xl overflow-hidden ring-2 ring-primary/20">
                             <Image
                               src={barber.image || "/placeholder.svg"}
                               alt={barber.name}
-                              width={96}
-                              height={96}
+                              width={1080}
+                              height={1350}
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <h3 className="font-bold text-base md:text-lg mb-2 text-white">{barber.name}</h3>
-                          <p className="text-primary text-xs md:text-sm mb-1">{barber.specialty}</p>
-                          <p className="text-muted-foreground text-xs md:text-sm">{barber.experience}</p>
+                          <h3 className="font-bold text-lg md:text-xl mb-2 text-white">{barber.name}</h3>
+                          <p className="text-primary text-sm md:text-base mb-1">{barber.specialty}</p>
+                          <p className="text-muted-foreground text-sm md:text-base">{barber.experience}</p>
                         </div>
                         </Card>
                       </motion.div>

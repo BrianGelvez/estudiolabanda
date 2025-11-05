@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { MapPin, Phone, Mail, Instagram } from "lucide-react"
 import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -148,9 +149,33 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
+        {/* CTA Reservar en Footer */}
         <motion.div 
           variants={itemVariants}
-          className="border-t border-primary/20 mt-8 pt-8 text-center"
+          className="mt-12 mb-8 text-center"
+        >
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="glass-card rounded-2xl p-8 max-w-2xl mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-white mb-3">¿Listo para tu próximo corte?</h3>
+            <p className="text-muted-foreground mb-6">Reservá tu turno ahora y experimentá el estilo de Studio La Banda</p>
+            <Link href="/reservar">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="glass-button rounded-full px-8 py-3 text-lg font-semibold">
+                  Reservar Turno
+                </Button>
+              </motion.div>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          variants={itemVariants}
+          className="border-t border-primary/20 pt-8 text-center"
         >
           <p className="text-muted-foreground text-sm">© 2025 Studio La Banda. Todos los derechos reservados.</p>
         </motion.div>
