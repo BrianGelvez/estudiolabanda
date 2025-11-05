@@ -329,7 +329,13 @@ Quiero reservar una cita con los siguientes detalles:
                           className={`glass-card rounded-2xl p-4 md:p-6 cursor-pointer transition-all duration-300 ${
                             selectedBarber === barber.id ? "ring-2 ring-primary bg-primary/10" : "hover:bg-white/5"
                           }`}
-                          onClick={() => setSelectedBarber(barber.id)}
+                          onClick={() => {
+                            setSelectedBarber(barber.id)
+                            setTimeout(() => {
+                              setDirection(1)
+                              setCurrentStep(2)
+                            }, 300)
+                          }}
                         >
                         <div className="text-center">
                           <div className="w-full aspect-[4/5] mx-auto mb-4 md:mb-5 rounded-xl overflow-hidden ring-2 ring-primary/20">
@@ -350,25 +356,6 @@ Quiero reservar una cita con los siguientes detalles:
                     ))}
                   </motion.div>
                 </Card>
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-center"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      onClick={handleNext}
-                      disabled={!selectedBarber}
-                      className="glass-button rounded-full px-6 md:px-8 py-2 md:py-3 text-base md:text-lg font-medium w-full max-w-xs"
-                    >
-                      Continuar
-                    </Button>
-                  </motion.div>
-                </motion.div>
               </motion.div>
             )}
 

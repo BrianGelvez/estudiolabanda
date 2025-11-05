@@ -107,8 +107,11 @@ export default function AvailabilityCalendar({
 
   // Manejar la selección de un día
   const handleDayClick = (date: Date) => {
-    const dateString = format(date, 'yyyy-MM-dd')
-    console.log('Fecha seleccionada:', dateString, 'Fecha original:', date.toDateString()) // Debug
+    // Usar la fecha local sin conversión de zona horaria
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const dateString = `${year}-${month}-${day}`
     onSelectDate?.(dateString)
   }
 
@@ -161,7 +164,9 @@ export default function AvailabilityCalendar({
       <div className="grid grid-cols-7 gap-1">
         {allDays.map((day, index) => {
           const isCurrentMonth = isSameMonth(day, currentMonth)
-          const isSelected = selectedDate && isSameDay(day, new Date(selectedDate))
+          // Comparar fechas como strings para evitar problemas de zona horaria
+          const dayString = format(day, 'yyyy-MM-dd')
+          const isSelected = selectedDate === dayString
           const availabilityStatus = getAvailabilityStatus(day)
           const isClickable = isCurrentMonth && availabilityStatus !== 'full'
 
@@ -195,7 +200,7 @@ export default function AvailabilityCalendar({
       </div>
 
       {/* Leyenda de colores */}
-      <div className="mt-6 space-y-2">
+      {/* <div className="mt-6 space-y-2">
         <div className="text-sm text-muted-foreground mb-2">Disponibilidad:</div>
         <div className="flex flex-wrap gap-4 text-xs">
           <div className="flex items-center gap-2">
@@ -211,7 +216,7 @@ export default function AvailabilityCalendar({
             <span>Completo</span>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
