@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Scissors, Star, Crown } from "lucide-react"
+import { Scissors, Crown } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
@@ -15,8 +15,8 @@ const services = [
     title: "Corte Base",
     description:
       "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Incluye perfilado de cejas. Servicio práctico, rápido y prolijo.",
-    price: "$7.000",
-    duration: "30 min",
+    price: "$8.000",
+    duration: "30-40 min",
     features: [
       "Fade prolijo en laterales",
       "Tijera en parte superior",
@@ -25,35 +25,21 @@ const services = [
     ],
   },
   {
-    tier: "pro" as const,
-    icon: Star,
-    title: "Corte Pro",
-    description:
-      "Incluye todo lo del Corte Base + arreglo de barba, perfilado de cejas, mascarilla para puntos negros y opción de diseño en el cabello.",
-    price: "$8.000",
-    duration: "45 min",
-    features: [
-      "Todo lo del Corte Base",
-      "Arreglo de barba",
-      "Perfilado de cejas",
-      "Mascarilla para puntos negros",
-      "Opción de diseño",
-    ],
-  },
-  {
     tier: "premium" as const,
     icon: Crown,
     title: "Corte Premium Experiencia",
     description:
-      "Incluye todo lo anterior + asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello, productos y secado de cabello, con peinado final (styling).",
+      "Experiencia completa que incluye asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello, productos y secado de cabello, con peinado final (styling). Incluye arreglo de barba y perfilado de cejas.",
     price: "$9.000",
     duration: "1 hora",
     features: [
-      "Todo lo del Corte Pro",
+      "Corte fade profesional",
+      "Arreglo de barba completo",
       "Asesoramiento personalizado",
       "Trabajo de textura del cabello",
       "Productos y secado de cabello",
       "Peinado final (styling)",
+      "Mascarilla para puntos negros",
       "Experiencia de cuidado exclusiva",
     ],
   },
@@ -102,12 +88,12 @@ export default function ServiciosPage() {
             </p>
           </motion.div>
 
-          {/* Services Grid */}
+          {/* Services Grid - Ajustado para 2 servicios */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto mb-16"
+            className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto mb-16"
           >
             {services.map((service, index) => (
               <motion.div
@@ -118,8 +104,8 @@ export default function ServiciosPage() {
               >
                 <Card
                   className={`glass-card card-bright rounded-2xl p-6 sm:p-8 h-full transition-all duration-300 ${
-                    service.tier === "pro" ? "border-primary/40" : ""
-                  } ${service.tier === "premium" ? "ring-2 ring-primary/60" : ""}`}
+                    service.tier === "premium" ? "ring-2 ring-primary/60" : ""
+                  }`}
                 >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 sm:mb-6">
                   <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
@@ -132,12 +118,10 @@ export default function ServiciosPage() {
                       className={`text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full border ${
                         service.tier === "base"
                           ? "bg-primary/10 border-primary/20 text-primary"
-                          : service.tier === "pro"
-                          ? "bg-primary/15 border-primary/30 text-primary"
                           : "bg-primary/20 border-primary/40 text-primary"
                       }`}
                     >
-                      {service.tier === "base" ? "BASE" : service.tier === "pro" ? "PRO" : "PREMIUM"}
+                      {service.tier === "base" ? "BASE" : "PREMIUM"}
                     </span>
                   </h3>
                   <div className="text-left sm:text-right">

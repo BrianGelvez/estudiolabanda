@@ -9,10 +9,10 @@ import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 
 const stats = [
-  { number: "3+", label: "Años de Experiencia" },
+  { number: "5+", label: "Años de Experiencia" },
   { number: "2", label: "Barberos Expertos" },
-  { number: "500", label: "Cortes realizados" },
-  { number: "5★", label: "Valoración Promedio" },
+  { number: "50", label: "Clientes fieles" },
+  { number: "+200", label: "Cortes mensuales" },
 ]
 
 const containerVariants = {
@@ -140,7 +140,7 @@ export default function HomePage() {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Sobre Nosotros</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Conoce la historia y la pasión que hay detrás de Studio La Banda.
+              Conoce la historia, los valores y el equipo que hace de studio la banda la barberia más exclusiva de la zona.
             </p>
           </motion.div>
 
@@ -155,13 +155,20 @@ export default function HomePage() {
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Nuestra Historia</h3>
                 <p className="text-muted-foreground mb-4">
-                  Studio La Banda nació de la pasión por el arte de la barbería tradicional. 
-                  Fundado en 2009, nuestro estudio ha sido el hogar de barberos expertos que 
-                  han perfeccionado sus técnicas a lo largo de décadas.
+                  La pasión por este rubro nació en 2019 cuando Alexis comenzó a cortar el pelo 
+                  a su grupo de amigos en el barrio. Lo que empezó como un hobby entre risas, 
+                  apareció con el nombre "The Barbería Alexis" como una manera de representar 
+                  a la banda de amigos que se juntaban siempre y eran sus primeros clientes.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  En ese transcurso, Alexis le empezó a enseñar a su hermano Matías, donde se 
+                  encendió una chispa que pronto se apagó y el nombre quedó en el olvido.
                 </p>
                 <p className="text-muted-foreground">
-                  Cada corte, cada afeitado, cada detalle es una obra de arte que refleja 
-                  nuestro compromiso con la excelencia y la tradición barberil.
+                  Hasta que en 2024, Matías decidió retomar la idea y darle vida nuevamente, 
+                  pero con una visión mucho más fuerte: crear un espacio que representa algo 
+                  más grande que un simple corte de pelo. Así nació <span className="text-primary font-semibold">Studio La Banda</span>, 
+                  fundada oficialmente por Matías Osses y Alexis Osses como socios y hermanos.
                 </p>
               </motion.div>
             </motion.div>
