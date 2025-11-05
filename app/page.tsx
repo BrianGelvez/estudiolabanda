@@ -181,15 +181,20 @@ export default function HomePage() {
                 whileHover={{ scale: 1.02 }}
                 className="glass-card rounded-2xl p-8"
               >
-                <h3 className="text-2xl font-bold text-white mb-4">Nuestra Filosofía</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Filosofía de Studio La Banda</h3>
                 <p className="text-muted-foreground mb-4">
-                  Creemos que la barbería es más que un simple corte de pelo. Es un ritual, 
-                  una experiencia que combina tradición, técnica y modernidad para crear 
-                  un momento único para cada cliente.
+                  En Studio La Banda, un corte va mucho más allá de lo estético — es una experiencia 
+                  donde cada persona es escuchada, entendida y atendida con dedicación. Nuestro propósito 
+                  es que cada cliente no solo cambie su imagen, sino también cómo se siente consigo mismo.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Nos enfocamos en la conexión genuina, el respeto por el tiempo del cliente y el detalle 
+                  en cada servicio. Valoramos la evolución, la formación constante y el trabajo en equipo.
                 </p>
                 <p className="text-muted-foreground">
-                  En Studio La Banda, cada visita es una oportunidad para conectarte con 
-                  tu mejor versión, rodeado de un ambiente exclusivo y profesional.
+                  Studio La Banda no es una simple barbería — es un movimiento. Un espacio donde se combina 
+                  estilo, autenticidad y desarrollo personal, donde cada cliente se convierte en parte de 
+                  nuestra historia.
                 </p>
               </motion.div>
             </motion.div>
@@ -199,7 +204,7 @@ export default function HomePage() {
             variants={itemVariants}
             className="text-center mt-12"
           >
-            <Link href="/nosotros">
+            {/* <Link href="/nosotros">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -208,7 +213,7 @@ export default function HomePage() {
                   Conoce Más Sobre Nosotros
                 </Button>
               </motion.div>
-            </Link>
+            </Link> */}
           </motion.div>
         </div>
       </motion.section>

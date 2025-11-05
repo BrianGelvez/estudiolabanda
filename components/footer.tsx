@@ -61,7 +61,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-muted-foreground text-sm">
-              La barbería más exclusiva donde el estilo se encuentra con la tradición.
+              Más que una barbería — una experiencia que te conecta con tu mejor versión.
             </p>
           </motion.div>
 
@@ -74,28 +74,28 @@ export default function Footer() {
                 className="flex items-center gap-2"
               >
                 <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">Calle Principal 123, Madrid</span>
+                <span className="text-muted-foreground">Sanavirones 523</span>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-2"
               >
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">+34 900 000 000</span>
+                <span className="text-muted-foreground">3521 530927</span>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-2"
               >
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">info@studiolabanda.com</span>
+                <span className="text-muted-foreground">osses084@gmail.com</span>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-2"
               >
                 <Instagram className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">@studiolabanda</span>
+                <span className="text-muted-foreground">@studio_labanda.ok</span>
               </motion.div>
             </div>
           </motion.div>
@@ -103,27 +103,19 @@ export default function Footer() {
           {/* Hours */}
           <motion.div variants={itemVariants}>
             <h3 className="text-primary font-semibold mb-4">Horarios</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
+            <div className="space-y-2 text-md text-muted-foreground">
               <motion.div 
                 whileHover={{ x: 5 }}
                 className="flex justify-between"
               >
-                <span>Lun - Vie</span>
-                <span>9:00 - 20:00</span>
+                <span className="">Todos los días</span>
+                <span>24/7</span>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
-                className="flex justify-between"
+                className="mt-3"
               >
-                <span>Sábado</span>
-                <span>9:00 - 18:00</span>
-              </motion.div>
-              <motion.div 
-                whileHover={{ x: 5 }}
-                className="flex justify-between"
-              >
-                <span>Domingo</span>
-                <span>Cerrado</span>
+                <p className="text-sm">Atendemos con reserva previa</p>
               </motion.div>
             </div>
           </motion.div>
@@ -137,11 +129,11 @@ export default function Footer() {
                   Servicios
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ x: 5 }}>
+              {/* <motion.div whileHover={{ x: 5 }}>
                 <Link href="/nosotros" className="block text-muted-foreground hover:text-primary transition-colors">
                   Nosotros
                 </Link>
-              </motion.div>
+              </motion.div> */}
               <motion.div whileHover={{ x: 5 }}>
                 <Link href="/reservar" className="block text-muted-foreground hover:text-primary transition-colors">
                   Reservar Cita

@@ -39,7 +39,6 @@ const services = [
       "Trabajo de textura del cabello",
       "Productos y secado de cabello",
       "Peinado final (styling)",
-      "Mascarilla para puntos negros",
       "Experiencia de cuidado exclusiva",
     ],
   },
@@ -141,7 +140,7 @@ export default function ServiciosPage() {
                   ))}
                 </div>
 
-                <Link href="/reservar" className="block">
+                <Link href={`/reservar?servicio=${service.tier}`} className="block">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
