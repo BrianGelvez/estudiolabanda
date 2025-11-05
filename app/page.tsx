@@ -96,7 +96,7 @@ export default function HomePage() {
             variants={itemVariants}
             className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
           >
-            <Link href="/reservar">
+            {/* <Link href="/reservar">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -105,7 +105,7 @@ export default function HomePage() {
                   Reservar Turno
                 </Button>
               </motion.div>
-            </Link>
+            </Link> */}
             <Link href="/servicios">
               <motion.div
                 whileHover={{ scale: 1.05 }}
