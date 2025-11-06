@@ -166,7 +166,7 @@ export default function ServiciosPage() {
             <motion.div
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="glass-card rounded-2xl p-8 text-center">
+              {/* <Card className="glass-card rounded-2xl p-8 text-center">
               <h2 className="text-3xl font-bold text-white mb-4">¿No encuentras lo que buscas?</h2>
               <p className="text-muted-foreground mb-6 text-lg">
                 Ofrecemos servicios personalizados adaptados a tus necesidades específicas. Contacta con nosotros para
@@ -195,7 +195,7 @@ export default function ServiciosPage() {
                   </motion.div>
                 </Link>
               </div>
-            </Card>
+            </Card> */}
             </motion.div>
           </motion.div>
         </div>

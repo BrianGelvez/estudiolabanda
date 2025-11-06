@@ -94,27 +94,14 @@ export default function HomePage() {
           {/* CTA Buttons */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-col sm:flex-row justify-center gap-4 mb-16"
+            className="flex justify-center mb-16"
           >
-            {/* <Link href="/reservar">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button className="glass-button rounded-full px-8 py-4 text-lg font-semibold">
-                  Reservar Turno
-                </Button>
-              </motion.div>
-            </Link> */}
             <Link href="/servicios">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button 
-                  variant="outline"
-                  className="glass rounded-full px-8 py-4 text-lg font-semibold border-primary/30 hover:bg-primary/10 bg-transparent"
-                >
+                <Button className="glass-button rounded-full px-8 py-4 text-lg font-semibold">
                   Ver Servicios
                 </Button>
               </motion.div>
@@ -170,7 +157,7 @@ export default function HomePage() {
                 <p className="text-muted-foreground mb-4">
                   La pasión por este rubro nació en 2019 cuando Alexis comenzó a cortar el pelo 
                   a su grupo de amigos en el barrio. Lo que empezó como un hobby entre risas, 
-                  apareció con el nombre "The Barbería Alexis" como una manera de representar 
+                  apareció con el nombre "The Barber banda Alexis" como una manera de representar 
                   a la banda de amigos que se juntaban siempre y eran sus primeros clientes.
                 </p>
                 <p className="text-muted-foreground mb-4">

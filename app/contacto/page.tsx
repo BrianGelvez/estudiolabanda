@@ -124,7 +124,7 @@ export default function ContactoPage() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="glass text-lg p-4 rounded-xl mt-2 text-white"
-                      placeholder="+34 600 000 000"
+                      placeholder="3521 530927"
                     />
                   </div>
 
@@ -188,9 +188,7 @@ export default function ContactoPage() {
                       <div>
                         <h3 className="text-lg font-semibold text-white mb-1">Dirección</h3>
                         <p className="text-muted-foreground">
-                          Calle Principal 123
-                          <br />
-                          28001 Madrid, España
+                          Sanavirones 523
                         </p>
                       </div>
                     </motion.div>
@@ -209,7 +207,7 @@ export default function ContactoPage() {
                       </motion.div>
                       <div>
                         <h3 className="text-lg font-semibold text-white mb-1">Teléfono</h3>
-                        <p className="text-muted-foreground">+34 900 000 000</p>
+                        <p className="text-muted-foreground">3521 530927</p>
                       </div>
                     </motion.div>
 
@@ -227,7 +225,7 @@ export default function ContactoPage() {
                       </motion.div>
                       <div>
                         <h3 className="text-lg font-semibold text-white mb-1">Email</h3>
-                        <p className="text-muted-foreground">info@studiolabanda.com</p>
+                        <p className="text-muted-foreground">osses084@gmail.com</p>
                       </div>
                     </motion.div>
 
@@ -245,7 +243,7 @@ export default function ContactoPage() {
                       </motion.div>
                       <div>
                         <h3 className="text-lg font-semibold text-white mb-1">Instagram</h3>
-                        <p className="text-muted-foreground">@studiolabanda</p>
+                        <p className="text-muted-foreground">@studio_labanda.ok</p>
                       </div>
                     </motion.div>
                   </motion.div>
@@ -260,18 +258,13 @@ export default function ContactoPage() {
                     <Clock className="w-6 h-6 text-primary" />
                     Horarios de Atención
                   </h2>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-white font-medium">Lunes - Viernes</span>
-                      <span className="text-primary font-semibold">9:00 - 20:00</span>
+                      <span className="text-white font-medium">Todos los días</span>
+                      <span className="text-primary font-semibold text-xl">24/7</span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white font-medium">Sábado</span>
-                      <span className="text-primary font-semibold">9:00 - 18:00</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white font-medium">Domingo</span>
-                      <span className="text-muted-foreground">Cerrado</span>
+                    <div className="text-center">
+                      <p className="text-muted-foreground text-sm">Atendemos con reserva previa</p>
                     </div>
                   </div>
                 </Card>
