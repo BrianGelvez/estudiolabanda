@@ -12,6 +12,8 @@ import Footer from "@/components/footer"
 import AvailabilityCalendar from "@/components/availability-calendar"
 import { motion, AnimatePresence } from "framer-motion"
 import { useSearchParams } from "next/navigation"
+import { parse, format } from "date-fns"
+import { es } from "date-fns/locale"
 
 const barbers = [
   {
@@ -136,6 +138,25 @@ export default function ReservarPage() {
     }
   }
 
+  // Función helper para formatear fecha sin problemas de zona horaria
+  const formatDate = (dateString: string) => {
+    try {
+      // Parsear la fecha como fecha local sin conversión de zona horaria
+      const date = parse(dateString, 'yyyy-MM-dd', new Date())
+      return format(date, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es })
+    } catch (error) {
+      // Fallback si hay algún error
+      const [year, month, day] = dateString.split('-').map(Number)
+      const date = new Date(year, month - 1, day)
+      return date.toLocaleDateString("es-ES", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    }
+  }
+
   const handleSubmit = () => {
     // Generar mensaje de WhatsApp
     const selectedBarberData = barbers.find((b) => b.id === selectedBarber)
@@ -143,12 +164,7 @@ export default function ReservarPage() {
     
     if (!selectedBarberData || !selectedServiceData) return
 
-    const formattedDate = new Date(selectedDate).toLocaleDateString("es-ES", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })
+    const formattedDate = formatDate(selectedDate)
 
     const message = `Hola ${selectedBarberData.name}! 👋
 
@@ -476,12 +492,7 @@ Quiero reservar una cita con los siguientes detalles:
                       <div className="space-y-2 text-white text-sm md:text-base">
                         <p><strong>Servicio:</strong> {services.find((s) => s.id === selectedService)?.name}</p>
                         <p><strong>Barbero:</strong> {barbers.find((b) => b.id === selectedBarber)?.name}</p>
-                        <p><strong>Fecha:</strong> {new Date(selectedDate).toLocaleDateString("es-ES", {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}</p>
+                        <p><strong>Fecha:</strong> {formatDate(selectedDate)}</p>
                         <p><strong>Hora:</strong> {selectedTime}</p>
                       </div>
                     </motion.div>
@@ -576,12 +587,7 @@ Quiero reservar una cita con los siguientes detalles:
                       </p>
                       <p className="flex items-start gap-2">
                         <span className="text-primary">📅</span>
-                        <span><strong>Fecha:</strong> {new Date(selectedDate).toLocaleDateString("es-ES", {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}</span>
+                        <span><strong>Fecha:</strong> {formatDate(selectedDate)}</span>
                       </p>
                       <p className="flex items-start gap-2">
                         <span className="text-primary">🕐</span>
