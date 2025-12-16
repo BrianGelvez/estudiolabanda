@@ -103,20 +103,53 @@ export default function Footer() {
 
           {/* Hours */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-primary font-semibold mb-4">Horarios</h3>
-            <div className="space-y-2 text-md text-muted-foreground">
+            <h3 className="text-primary font-semibold mb-4">Horarios de Atención</h3>
+            <div className="space-y-2 text-sm text-muted-foreground">
               <motion.div 
                 whileHover={{ x: 5 }}
-                className="flex justify-between"
+                className="space-y-1"
               >
-                <span className="">Todos los días</span>
-                <span>24/7</span>
+                <div className="flex flex-col">
+                  <span className="text-white font-medium">Martes a Jueves</span>
+                  <span>Mañana: 10:00 a 12:00</span>
+                  <span>Tarde/Noche: 15:00 a 20:00</span>
+                </div>
               </motion.div>
               <motion.div 
                 whileHover={{ x: 5 }}
-                className="mt-3"
+                className="space-y-1"
               >
-                <p className="text-sm">Atendemos con reserva previa</p>
+                <div className="flex flex-col">
+                  <span className="text-white font-medium">Viernes</span>
+                  <span>15:00 a 22:00</span>
+                </div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="space-y-1"
+              >
+                <div className="flex flex-col">
+                  <span className="text-white font-medium">Sábados</span>
+                  <span>Mañana: 09:00 a 12:00</span>
+                  <span>Tarde/Noche: 15:00 a 22:00</span>
+                </div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="space-y-1 mt-2 pt-2 border-t border-primary/20"
+              >
+                <div className="flex flex-col">
+                  <span className="text-white font-medium">Domingos y Lunes</span>
+                  <span className="text-primary">Cerrado</span>
+                </div>
+                <p className="text-xs italic mt-1">Días destinados a cursos, formación y organización interna</p>
+              </motion.div>
+              <motion.div 
+                whileHover={{ x: 5 }}
+                className="mt-3 pt-3 border-t border-primary/20"
+              >
+                <p className="text-xs text-primary font-medium">✓ Trabajo por sistema de turnos</p>
+                <p className="text-xs mt-1">✓ Horarios pueden variar según el barbero</p>
               </motion.div>
             </div>
           </motion.div>

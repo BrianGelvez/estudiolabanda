@@ -1,9 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
-import { Scissors, Users, Clock, Award } from "lucide-react"
+import { Scissors, Users, Clock, Award, Check } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
@@ -127,6 +128,130 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Business Hours Section */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={containerVariants}
+        className="py-20"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Días y <span className="text-primary">Horarios de Atención</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Conocé nuestros horarios y reservá tu turno con anticipación
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="glass-card rounded-2xl p-8 md:p-10">
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Horarios */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                      <Clock className="w-6 h-6 text-primary" />
+                      Nuestros Horarios
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-white font-semibold mb-1">Martes a Jueves</p>
+                        <p className="text-muted-foreground text-sm">Mañana: 10:00 a 12:00</p>
+                        <p className="text-muted-foreground text-sm">Tarde/Noche: 15:00 a 20:00</p>
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold mb-1">Viernes</p>
+                        <p className="text-muted-foreground text-sm">15:00 a 22:00</p>
+                      </div>
+                      <div>
+                        <p className="text-white font-semibold mb-1">Sábados</p>
+                        <p className="text-muted-foreground text-sm">Mañana: 09:00 a 12:00</p>
+                        <p className="text-muted-foreground text-sm">Tarde/Noche: 15:00 a 22:00</p>
+                      </div>
+                      <div className="pt-3 border-t border-primary/20">
+                        <p className="text-white font-semibold mb-1">Domingos y Lunes</p>
+                        <p className="text-primary font-medium">Cerrado</p>
+                        <p className="text-muted-foreground text-xs italic mt-1">
+                          Días destinados a cursos, formación y organización interna
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Información Importante */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6">IMPORTANTE</h3>
+                    <div className="space-y-3">
+                      <motion.div 
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-black" />
+                        </div>
+                        <p className="text-muted-foreground">Trabajo por sistema de turnos</p>
+                      </motion.div>
+                      <motion.div 
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-black" />
+                        </div>
+                        <p className="text-muted-foreground">Horarios pueden variar según el barbero</p>
+                      </motion.div>
+                      <motion.div 
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-black" />
+                        </div>
+                        <p className="text-muted-foreground">Atención personalizada y sin apuros</p>
+                      </motion.div>
+                      <motion.div 
+                        whileHover={{ x: 5 }}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-black" />
+                        </div>
+                        <p className="text-muted-foreground">Reservá tu turno por WhatsApp / Web</p>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-8 pt-8 border-t border-primary/20 text-center"
+                >
+                  <Link href="/reservar">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button className="glass-button rounded-full px-8 py-3 text-lg font-semibold">
+                        Reservar tu Turno Ahora
+                      </Button>
+                    </motion.div>
+                  </Link>
+                </motion.div>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
 
       {/* About Us Section */}
       <motion.section 
