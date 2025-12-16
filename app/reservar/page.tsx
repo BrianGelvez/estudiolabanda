@@ -36,7 +36,7 @@ const services = [
   {
     id: "base",
     name: "Corte Base",
-    price: "$8.000",
+    price: "$10.000",
     icon: Scissors,
   },
   {

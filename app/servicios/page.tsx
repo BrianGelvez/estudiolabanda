@@ -15,7 +15,7 @@ const services = [
     title: "Corte Base",
     description:
       "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Incluye perfilado de cejas. Servicio práctico, rápido y prolijo.",
-    price: "$8.000",
+    price: "$9.000",
     duration: "30-40 min",
     features: [
       "Fade prolijo en laterales",
@@ -30,7 +30,7 @@ const services = [
     title: "Corte Premium Experiencia",
     description:
       "Experiencia completa que incluye asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello, productos y secado de cabello, con peinado final (styling). Incluye arreglo de barba y perfilado de cejas.",
-    price: "$9.000",
+    price: "$10.000",
     duration: "1 hora",
     features: [
       "Corte fade profesional",
