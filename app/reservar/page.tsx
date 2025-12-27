@@ -38,13 +38,13 @@ const services = [
   {
     id: "base",
     name: "Corte Base",
-    price: "$10.000",
+    price: "$9.000",
     icon: Scissors,
   },
   {
     id: "premium",
     name: "Corte Premium Experiencia",
-    price: "$9.000",
+    price: "$10.000",
     icon: Crown,
   },
 ]
