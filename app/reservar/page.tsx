@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Calendar, Clock, User, Check, Scissors, Crown } from "lucide-react"
+import { Calendar, Clock, User, Check, Crown } from "lucide-react"
 import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -35,12 +35,6 @@ const barbers = [
 ]
 
 const services = [
-  {
-    id: "base",
-    name: "Corte Base",
-    price: "$9.000",
-    icon: Scissors,
-  },
   {
     id: "premium",
     name: "Corte Premium Experiencia",
@@ -116,11 +110,10 @@ export default function ReservarPage() {
 
   useEffect(() => {
     const serviceParam = searchParams?.get('servicio')
-    if (serviceParam) {
+    if (serviceParam === 'premium') {
       setSelectedService(serviceParam)
     } else {
-      // Servicio por defecto si no viene ninguno
-      setSelectedService('base')
+      setSelectedService('premium')
     }
   }, [searchParams])
 

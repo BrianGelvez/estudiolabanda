@@ -3,27 +3,12 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Scissors, Crown } from "lucide-react"
+import { Crown } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { motion } from "framer-motion"
 
 const services = [
-  {
-    tier: "base" as const,
-    icon: Scissors,
-    title: "Corte Base",
-    description:
-      "Corte común tipo fade con laterales prolijos y corte limpio con tijera en la parte superior. Incluye perfilado de cejas. Servicio práctico, rápido y prolijo.",
-    price: "$9.000",
-    duration: "30-40 min",
-    features: [
-      "Fade prolijo en laterales",
-      "Tijera en parte superior",
-      "Perfilado de cejas",
-      "Terminado limpio y definido",
-    ],
-  },
   {
     tier: "premium" as const,
     icon: Crown,
@@ -87,12 +72,12 @@ export default function ServiciosPage() {
             </p>
           </motion.div>
 
-          {/* Services Grid - Ajustado para 2 servicios */}
+          {/* Services Grid - Un solo servicio premium */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto mb-16"
+            className="grid grid-cols-1 gap-6 sm:gap-8 max-w-2xl mx-auto mb-16"
           >
             {services.map((service, index) => (
               <motion.div
@@ -102,9 +87,7 @@ export default function ServiciosPage() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Card
-                  className={`glass-card card-bright rounded-2xl p-6 sm:p-8 h-full transition-all duration-300 ${
-                    service.tier === "premium" ? "ring-2 ring-primary/60" : ""
-                  }`}
+                  className="glass-card card-bright rounded-2xl p-6 sm:p-8 h-full transition-all duration-300 ring-2 ring-primary/60"
                 >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4 sm:mb-6">
                   <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
@@ -113,14 +96,8 @@ export default function ServiciosPage() {
                 <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-4">
                   <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
                     {service.title}
-                    <span
-                      className={`text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full border ${
-                        service.tier === "base"
-                          ? "bg-primary/10 border-primary/20 text-primary"
-                          : "bg-primary/20 border-primary/40 text-primary"
-                      }`}
-                    >
-                      {service.tier === "base" ? "BASE" : "PREMIUM"}
+                    <span className="text-[10px] sm:text-xs px-2 py-0.5 sm:py-1 rounded-full border bg-primary/20 border-primary/40 text-primary">
+                      PREMIUM
                     </span>
                   </h3>
                   <div className="text-left sm:text-right">
