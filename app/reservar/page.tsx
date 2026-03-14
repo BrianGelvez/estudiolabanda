@@ -38,7 +38,7 @@ const barbers = [
     specialty: "Barbero profesional",
     experience: "Barbero",
     image: "/dario.png",
-    phone: "3521550000",
+    phone: "3521467241",
   },
 ]
 
