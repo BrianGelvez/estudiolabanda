@@ -32,6 +32,14 @@ const barbers = [
     image: "/alexis.png",
     phone: "3521532839",
   },
+  {
+    id: 3,
+    name: 'Dario',
+    specialty: "Barbero profesional",
+    experience: "Barbero",
+    image: "/dario.png",
+    phone: "3521550000",
+  },
 ]
 
 const services = [
