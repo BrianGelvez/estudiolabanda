@@ -15,7 +15,7 @@ const services = [
     title: "Corte Premium Experiencia",
     description:
       "Experiencia completa que incluye asesoramiento personalizado, escucha activa y recomendaciones según rostro, estilo y personalidad. Se trabaja la textura del cabello, productos y secado de cabello, con peinado final (styling). Incluye arreglo de barba y perfilado de cejas.",
-    price: "$10.000",
+    price: "$12.000",
     duration: "1 hora",
     features: [
       "Corte fade profesional",

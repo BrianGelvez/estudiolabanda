@@ -73,7 +73,7 @@ export default function HomePage() {
               }}
               className="glass-card rounded-2xl p-8"
             >
-              <Image src="/logo.jpg" alt="Studio La Banda Logo" width={150} height={150} className="mx-auto" />
+              <Image src="/logo.jpeg" alt="Studio La Banda Logo" width={150} height={150} className="mx-auto" />
             </motion.div>
           </motion.div>
 

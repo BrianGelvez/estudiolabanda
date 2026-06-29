@@ -46,7 +46,7 @@ const services = [
   {
     id: "premium",
     name: "Corte Premium Experiencia",
-    price: "$10.000",
+    price: "$12.000",
     icon: Crown,
   },
 ]

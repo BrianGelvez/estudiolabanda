@@ -49,7 +49,7 @@ export default function Footer() {
                 className="w-12 h-12 rounded-full overflow-hidden"
               >
                 <Image
-                  src="/logo.jpg"
+                  src="/logo.jpeg"
                   alt="Studio La Banda"
                   width={48}
                   height={48}
